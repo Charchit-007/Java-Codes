@@ -1,0 +1,88 @@
+package cs_dsa;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+public class ds {
+	public static void main(String[] args) {
+		LinkedList node = new LinkedList<Integer>(); // empty linked list object
+		node.add(2);
+		node.add(30);
+		node.add(40);
+		node.add(50);
+		node.add(60);
+		
+		LinkedList nodesecond = new LinkedList<Integer>();
+		nodesecond.add(60);
+		nodesecond.add(50);
+		nodesecond.add(40);
+		nodesecond.add(30);
+		nodesecond.add(20);
+		
+		ds d = new ds();
+		/*int total = d.sumLinkedList(node, nodesecond);
+		System.out.println("total of both list :"+total);*/
+		/*int max = d.maxno(node,  nodesecond); //1st question 
+		System.out.println("Maximum number is :"+max);*/
+		//int sing = d.single(node, nodesecond);  // 2nd question
+		int unq = d.unique(node, nodesecond);
+	}
+	int sumLinkedList(LinkedList a , LinkedList b) {
+		int sum = 0 ;
+		Iterator it = a.iterator();
+		while(it.hasNext())
+		{
+			int n = (Integer)it.next();
+			sum = sum + n ;
+		}
+		it = b.iterator();
+		while(it.hasNext())
+		{
+			int n = (Integer)it.next();
+			sum = sum + n ;
+		}
+		return sum;
+	}
+	int maxno(LinkedList a , LinkedList b){
+		int num = (Integer)a.get(0);
+		Iterator it = a.iterator() ;
+		while(it.hasNext()) {
+			int n = (Integer)it.next();
+			if(n>=num) {
+				num = n;
+			}
+		}
+		it = b.iterator();
+		while(it.hasNext()) {
+			int n = (Integer)it.next();
+			if(n>=num) {
+				num = n;
+			}
+		}
+		return num;
+	}
+	int single(LinkedList a , LinkedList b) {
+		Iterator it = a.iterator() ;
+		int num = 0 ;
+		while(it.hasNext()) {
+			int n = (Integer)it.next();
+			if(n < 10 && n> -10) {
+				System.out.print(n+" ");
+			}
+			else {
+				System.out.println("nahi hai");
+			}
+		}
+		return 0;
+	}
+	int unique(LinkedList a , LinkedList b) {
+		Iterator it = a.iterator() ;
+		while(it.hasNext()) {
+			int n = (Integer)it.next();
+			while(it.hasNext()) {
+				int n1 = (Integer)it.next();
+				if()
+			}
+		  }
+		return 0;
+	}
+}
