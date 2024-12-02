@@ -1,0 +1,30 @@
+package edu;
+import java.util.*;
+public class Stackdemo {
+	public static void main(String[] args) {
+		// object of stack
+		Stack <Integer> stck = new Stack<>();
+		stck.push(10);
+		stck.push(20);
+		stck.push(30);
+		stck.push(40);
+		stck.push(50);
+		System.out.println("Stack before :" + stck);
+
+		stck.pop();
+		stck.pop();
+		
+		System.out.println("Stack after :" + stck);
+	}
+
+static void pushelmnt(Stack stck,int x) {
+	stck.push(new Integer(x));
+	System.out.println("push ->"+ x);
+	System.out.println("stack" + stck);
+}
+static void popelmnt(Stack stck) {
+	System.out.print("pop -> ");
+	Integer x = (Integer) stck.pop();
+	System.out.println("Stack "+ stck);
+}
+}
