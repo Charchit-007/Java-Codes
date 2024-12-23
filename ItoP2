@@ -1,0 +1,73 @@
+package bubs;
+
+import java.util.*;
+import java.io.*;
+
+public class ItoP { // infix to postfix
+	int prec(char c) {
+		//it gives precedence of mathematical operator like bodmas rule
+		if(c=='^') {
+			return 3; //highest precedence
+		}
+		else if(c=='/' || c =='*') {
+			return 2;
+		}
+		else if(c == '+' || c =='-') {
+			return 1;
+		}
+		else {
+			return -1;
+		}
+	}
+	
+	String Infixtopostfix(String f){
+		
+		String output = ""; //postfix string
+		String s= "";
+		Stack<String> op = new Stack<String>();
+		char c;
+		char ch;
+		String fix = f;
+		String postfix = "";
+		for(int i=0;i<fix.length();i++) {
+			c = fix.charAt(i);
+			if(c != '+' && c != '-' && c != '%'&& c != '/' && c != '+'&& c != '*' && c != '+'&& c != '(' && c != ')') {
+				postfix = postfix + c;
+			}
+			// if operator is scanned
+			else if(c == '+' || c == '-' || c == '%'|| c == '/' || c == '+'|| c == '*' || c == '+'|| c == '(' || c == ')') {
+				//logic with precedence
+				//op.push(c+"");
+				while(!op.isEmpty() && prec(c) < prec(op.peek())) {
+					output = output + op.pop();
+				}
+				op.push(c);
+			}	
+			else if(c == ')') {
+				ch=op.pop(); //take out top element from stack
+				if(!ch.equals('(')) {
+					output = output + s;
+				}
+			}
+			else {
+				System.out.println("khali hai");
+			}
+		}
+		System.out.println("Output :"+output);
+		return output;
+	}
+	
+	public static void main(String[] args) {
+		
+		ItoP p = new ItoP();
+		try {
+			Scanner sc = new Scanner(System.in);
+			String expression = sc.nextLine();
+			String postfix = p.Infixtopostfix(expression);
+			System.out.println("The postfix expression is :"+postfix);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
