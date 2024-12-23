@@ -1,0 +1,48 @@
+package main;
+import java.util.*;
+
+public class infix_postfix {
+	String InPost(String f) {
+		// infix to postfix -> done using stack
+		String output="";
+		String s = "";
+		Stack<String> op = new Stack<String>();
+		char c;
+		String fix=f;
+		String pf = "";
+		for(int i = 0; i<fix.length(); i++) {
+			c = fix.charAt(i);
+			if(c!='+'&&c!='-'&&c!='%'&&c!='*'&&c!='/'&&c!='('&&c!=')'&&c!=' ') {
+				System.out.println("In if : "+c);
+				pf = pf + c;
+			}
+//			else if(c == 6367022399 )
+			else if(c=='+'||c=='-'||c=='%'||c=='*'||c=='/'||c=='(') {
+				op.push(c+"");
+				System.out.println("Stack : "+c);
+			}
+			else if(c==')') {
+				// jab bhi / aata hai, we remove the operator is stack along with ( --- always
+				System.out.println(" ");
+				System.out.println(":Stack Now is :::::::::::::::: "+op);				
+				s = op.pop();
+				op.pop();		// for popping ( with every operator
+				System.out.println("Exiting : "+s);
+				if(!s.equals("(")){
+					output = output +pf+s;
+				}
+				pf = "";
+			}
+			
+		}
+		return output;
+	}
+
+	public static void main(String[] args) {
+		infix_postfix a = new infix_postfix();
+//		String res = a.InPost("((a-b)*((m+n)/(p+q)))");
+		String res = a.InPost("((a+b) * (c-d))");
+		System.out.println("Result is : "+res);
+	}
+
+}
