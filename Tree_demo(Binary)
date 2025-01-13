@@ -1,0 +1,71 @@
+package pracss;
+
+class Node{
+	int key;
+	int data;
+	Node left , right;
+	
+	public Node (int item) {
+		data = item;
+		left = right = null;
+	}
+}
+public class Binary_tree {
+	//root of binary tree
+	Node root;
+	
+	Binary_tree() {
+		root = null;
+	}
+	void printPostorder(Node node) {
+		if(node == null) 
+			return;
+			//first recur on left subtree
+			printPostorder(node.left);
+			
+			printPostorder(node.right);
+			
+			System.out.print(node.data+ " " );	
+	}
+	
+	void printInorder(Node node) {
+		if(node == null) 
+			return;
+			//first recur on left subtree
+			printInorder(node.left);
+			
+			System.out.print(node.data+ " " );
+			
+			printInorder(node.right);		
+	}
+	void printPreorder(Node node) {
+		if(node == null) 
+			return;
+			//first recur on left subtree
+			System.out.print(node.data+ " " );
+		
+			printPreorder(node.left);
+			
+			printPreorder(node.right);	
+	}
+	
+	public static void main(String args[]) {
+		Binary_tree tree = new Binary_tree();
+		tree.root = new Node(40); // root node always 1
+		tree.root.left = new Node(30);
+		tree.root.right = new Node(50);
+		tree.root.left.left = new Node(20);
+		tree.root.left.right = new Node(35);
+		tree.root.left.left.left = new Node(15);
+		tree.root.left.left.right = new Node(25);
+		
+		System.out.println("Inorder traversal of binary treee is :");
+		tree.printInorder(tree.root);
+		System.out.println();
+		System.out.println("Postorder traversal of binary treee is :");
+		tree.printPostorder(tree.root);
+		System.out.println();
+		System.out.println("Preorder traversal of binary treee is :");
+		tree.printPreorder(tree.root);
+	}
+}
