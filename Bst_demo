@@ -1,0 +1,99 @@
+package Tree;
+import java.util.Scanner;
+class TreeNode{
+	int data;
+	TreeNode left;
+	TreeNode right;
+
+public int getData() {
+	return data;
+	}
+public void setData(int data) {
+	this.data = data;
+	}
+public TreeNode getRight() {
+	return this.right;
+}
+public TreeNode getLeft() {
+	return this.left;
+	}
+public void setRight(TreeNode right) {
+	this.right = right;
+	}
+public void setLeft(TreeNode left) {
+	this.left = left;
+}
+public TreeNode(int data) {
+	this.data = data;
+	this.left = null;
+	this.right = null;
+	}
+}
+public class TreeDemo {
+	TreeNode node = null;
+	TreeNode root = null;
+	TreeNode p = root;
+	TreeNode q = root;
+	
+	public TreeNode insert(TreeNode root, int data) {
+		if(root == null) {
+			root = new TreeNode(data);
+			return root;
+		}
+		if(data <= root.getData()) {
+			root.setLeft(insert(root.getLeft(),data));
+		}
+		else if(data > root.getData()) {
+			root.setRight(insert(root.getRight(),data));
+		}
+		return root;
+	}
+	void inorder(TreeNode node) {
+		if(node == null) {
+			return;
+		}
+		inorder(node.getLeft());
+		System.out.println(node.getData());
+		inorder(node.getRight());
+	}
+	void postorder(TreeNode node) {
+		if(node == null) {
+			return;
+		}
+		postorder(node.getLeft());
+		postorder(node.getRight());
+		System.out.println(node.getData());
+	}
+	void preorder(TreeNode node) {
+		if(node == null) {
+			return;
+		}
+		System.out.println(node.getData());
+		preorder(node.getLeft());
+		preorder(node.getRight());
+	}
+	TreeNode highest(TreeNode root) {
+		TreeNode p= root;
+		
+		while(!null) 
+			
+		return p;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Enter no of inputs :");
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		TreeNode root = null;
+		TreeDemo tree = new TreeDemo();
+		for(int i=0;i<n ; i++) {
+			System.out.println("Enter value ");
+			int temp_val = sc.nextInt();
+			root = tree.insert(root,temp_val);
+		}
+		System.out.println("Tree created successfully");
+		tree.highest(root);
+		System.out.println(tree.getData());
+	}
+}
