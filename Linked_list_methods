@@ -1,0 +1,85 @@
+package linkedlist;
+import java.util.Scanner;
+public class linked {
+	
+	static void display (Node head) {
+		Node p = head;
+		while(p!=null) {
+			System.out.println("--> "+p.getData());
+			p = p.getNext();
+		}
+	}
+	
+	Node deleteposLL(Node head, int pos) {
+	 	int i = 0;
+	 	Node p = head;
+	 	Node q = p;
+	 	if(pos>i){	// if not start node
+	 		while(p != null){
+	 			p = p.getNext();
+	 			if( i == pos)break;		// has it reached position?
+	 			q = p;
+	 		}
+	 		q.setNext(p.getNext());
+	 		p = null;
+	 		return head;
+	 	}
+	 	else {		// if start node
+	 		head = p.getNext();
+	 		p = null;
+	 		return head;
+	 	}
+	 }
+	
+	static Node createLL(int values) {
+		Scanner sc = new Scanner(System.in);
+		Node head = null;
+		Node p = null;
+		Node q;
+		
+		for(int i = 0;i<values;i++) {
+			System.out.println("Enter values:");
+			int tmp_val = sc.nextInt();
+			if(head == null) {
+				head = new Node(tmp_val);
+				p=head;
+			}
+			else if(p!= null) {
+				q = new Node(tmp_val);
+				p.setNext(q);
+				while(p.getNext() != null) {
+					p =p.getNext();
+				}
+			}
+		}
+		return head;
+	}
+	
+	public static void main(String[] args) {
+		Node LLHead = createLL(5);
+		display(LLHead);
+	}
+}
+
+class Node{
+	int data;
+	Node next;
+	
+	Node(int data){
+		this.data = data;
+		next = null;
+	}
+	public int getData() {
+		return data;
+	}
+	public void setData(int data) {
+		this.data = data;
+	}
+	public Node getNext() {
+		return next;
+	}
+	public void setNext(Node next) {
+		this.next = next;
+	}
+}
+
