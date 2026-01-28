@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Products CRUD</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 70%;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Products CRUD</h1>
+
+<!-- SUCCESS MESSAGE -->
+<p th:if="${success}" th:text="${success}" style="color: green;"></p>
+
+<!-- ========================= -->
+<!-- INSERT / UPDATE FORM -->
+<!-- ========================= -->
+<form th:action="@{/products/save}" method="post">
+    <input type="hidden" name="id"/>
+
+    <label>Name:</label>
+    <input type="text" name="name" required />
+
+    <label>Price:</label>
+    <input type="number" step="0.01" name="price" required />
+
+    <label>Image Name:</label>
+    <input type="text" name="imageName" />
+
+    <button type="submit">Save Product</button>
+</form>
+
+<hr/>
+
+<!-- ========================= -->
+<!-- PRODUCTS TABLE -->
+<!-- ========================= -->
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="p : ${products}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.price}"></td>
+            <td th:text="${p.imageName}"></td>
+            <td>
+                <!-- DELETE -->
+                <a th:href="@{/products/delete/{id}(id=${p.id})}"
+                   onclick="return confirm('Are you sure?')">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
